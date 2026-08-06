@@ -18,20 +18,38 @@ A full website for the **Informatics & Software Engineering Department (ISE)** a
 - **Email:** PHPMailer (SMTP) and native PHP `mail()`
 - **Auth security:** bcrypt password hashing, random-token password resets with expiry, identity verification on recovery
 
-## 📁 Key Files
+## 📁 Project Structure
 
 ```
 index.html                     # homepage
 login.html / login.php         # authentication
-register.php                   # account creation
+signup.html / register.php     # account creation
 forgot-password.html / .php    # password recovery (identity verification)
 reset-password.php             # token-based password reset
 animated_robot_login.html      # animated digital ID login experience
 cards.html                     # staff directory
-adil.html, fatima.html, ...    # individual staff profile pages
+adil.html, fatima.html,
+firas.html, ghasan.html,
+mohamed.html, yazen.html       # individual staff profile pages
+about-us.html, about-uni.html  # informational pages
+contact.html                   # contact form
 mailer.php                     # PHPMailer SMTP wrapper
 sending_email.php              # simple contact-form mailer
 config.php                     # database connection (see config.example.php)
+translate.js                   # client-side language switcher
+
+images/                        # all site images & media, one place
+├── cihan-logo.png
+├── adil-hussain-mohammed.jpg
+├── mohammad-anwar-assaad.jpg
+├── yazan-saif-aldeen-mahmood.jpg
+├── fatima-photo.jfif
+├── firas-photo.jpg
+├── ghasan-photo.jpg
+├── f-coder.png / m-coder.png  # gender-selection icons (signup)
+├── networking-icon.png
+├── world-map-background.avif
+└── correct-answer-tone.wav
 ```
 
 ## 🚀 Getting Started
