@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ISE Login - Lottie Robot</title>
+  <!-- مكتبة Lottie -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Courier New', monospace;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(6px);
+    }
+
+    canvas {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      filter: blur(10px);
+    }
+
+    .login-box {
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(25px);
+      background-color: rgba(20, 20, 20, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0,255,255,0.1);
+      width: 90%;
+      max-width: 400px;
+      color: #00ffcc;
+    }
+
+    lottie-player {
+      width: 150px;
+      height: 150px;
+      margin: -60px auto 10px auto;
+      display: block;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      color: #00ffff;
+      animation: neon 6s linear infinite;
+    }
+
+    @keyframes neon {
+      0% { color: #00ffff; }
+      25% { color: #00ff88; }
+      50% { color: #00ffd5; }
+      75% { color: #00ffaa; }
+      100% { color: #00ffff; }
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 10px;
+      background-color: rgba(0, 255, 255, 0.1);
+      color: #00ffcc;
+      font-size: 1rem;
+    }
+
+    input::placeholder {
+      color: #00cccc;
+    }
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 15px;
+      top: 14px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #00ffee;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #00ffaa;
+      color: #001010;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #00cc88;
+    }
+
+    .links {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      color: #00ffcc;
+    }
+
+    .links a {
+      color: #00ffcc;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+<body>
+
+<canvas id="background"></canvas>
+
+<div class="login-box">
+  <!-- روبوت Lottie -->
+  <lottie-player
+    id="robotLottie"
+    src="https://lottie.host/72a2b61e-ff18-4a61-8a89-eec335bd3920/bzuhTwMc6G.json"
+    background="transparent"
+    speed="1"
+    loop
+    autoplay>
+  </lottie-player>
+
+  <h2>&lt;ISE Login /&gt;</h2>
+  <form>
+    <input type="email" id="email" placeholder="Email" required />
+    <div class="password-wrapper">
+      <input type="password" id="password" placeholder="Password" required />
+      <span class="toggle-password" onclick="togglePassword()">👁️</span>
+    </div>
+    <button type="submit">Login</button>
+    <div class="links">
+      <p><a href="#">Forgot Password?</a></p>
+      <p>Don’t have an account? <a href="#">Register</a></p>
+    </div>
+  </form>
+</div>
+
+<script>
+  const canvas = document.getElementById("background");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let hue = 0;
+  let balls = [];
+
+  for (let i = 0; i < 10; i++) {
+    balls.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 40 + 20,
+      dx: Math.random() * 0.3 - 0.15,
+      dy: Math.random() * 0.3 - 0.15,
+      baseHue: Math.random() * 360
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    balls.forEach((ball) => {
+      let dynamicHue = (ball.baseHue + hue) % 360;
+      ctx.beginPath();
+      ctx.fillStyle = `hsla(${dynamicHue}, 100%, 60%, 0.3)`;
+      ctx.shadowColor = `hsla(${dynamicHue}, 100%, 70%, 0.8)`;
+      ctx.shadowBlur = 25;
+      ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      ball.x += ball.dx;
+      ball.y += ball.dy;
+
+      if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) ball.dx *= -1;
+      if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) ball.dy *= -1;
+    });
+
+    hue += 0.5;
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
+  function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+    } else {
+      passwordInput.type = 'password';
+    }
+  }
+</script>
+
+</body>
+</html>

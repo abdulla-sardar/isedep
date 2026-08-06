@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="En">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا</title>
+    <form class="contact-form" action="send_mail.php" method="POST">
+
+    <style>
+       body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, #0d3b66, #6a0572, #00bfa6, #3a3d98);
+    background-size: 200% 200%;
+    animation: gradientBackground 12s ease infinite;
+    direction: rtl;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.contact-section {
+    max-width: 600px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    background: linear-gradient(145deg, #ffffff, #e3e6ff);
+    box-shadow: 0px 10px 30px rgba(98, 0, 234, 0.2);
+    border-radius: 15px;
+    border: 3px solid #3a3d98; /* حدود بلون متناسق */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+    direction: ltr;
+}
+
+.contact-section:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 15px 40px rgba(98, 0, 234, 0.3);
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 90%; /* جعل العرض 90% لترك مسافة جانبية */
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #3a3d98;
+    border-radius: 10px;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(58, 61, 152, 0.1);
+    text-align: left;
+    direction: ltr;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* محاذاة الحقول في الوسط */
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    border-color: #00bfa6;
+    background-color: #f1f1ff;
+    outline: none;
+    box-shadow: 0 4px 12px rgba(0, 191, 166, 0.4);
+}
+
+
+/* حركة التدرج اللوني */
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+
+.contact-form button {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #6200ea, #9c27b0);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 15px rgba(98, 0, 234, 0.4), 0 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    padding: 12px 30px;
+}
+
+/* تأثير التدرج الذهبي عند التمرير */
+.contact-form button:hover {
+    background: linear-gradient(90deg, #ffdd00, #ffbb33, #ff8800, #ffbb33, #ffdd00);
+    background-size: 200% 200%;
+    animation: goldenHoverEffect 4s ease infinite;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 187, 51, 0.6);
+    border-radius: 50px;
+    padding: 12px 30px;
+}
+
+/* حركة التدرج الذهبي المستمر */
+@keyframes goldenHoverEffect {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.contact-form button:hover {
+    box-shadow: 0 8px 20px rgba(255, 187, 51, 0.6), 0 0 15px rgba(255, 221, 0, 0.5);
+}
+
+
+.contact-info {
+    margin-top: 30px;
+    color: #444;
+    padding: 10px 20px;
+    text-align: center;
+}
+.contact-form button:hover {
+    animation: goldenHoverEffect 4s ease infinite, pulse 1.5s ease infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: translateY(-3px) scale(1);
+    }
+    50% {
+        transform: translateY(-3px) scale(1.05);
+    }
+}
+
+
+.social-media {
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.social-media a {
+    display: inline-flex;
+    align-items: center;
+    margin: 10px;
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
+    border: 2px solid transparent;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.social-media a img {
+    margin-right: 8px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-media a:hover {
+    color: #e1306c;
+    transform: scale(1.1);
+    border: 2px solid #e1306c;
+}
+
+.social-media a:hover img {
+    transform: rotate(15deg) scale(1.2);
+    filter: drop-shadow(0 0 10px #e1306c);
+
+}
+
+
+.back-to-home {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #6200ea, #9c27b0); /* Same gradient as your other buttons */
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(98, 0, 234, 0.4); /* Match the glowing shadow */
+}
+
+.back-to-home:hover {
+    background: linear-gradient(135deg, #9c27b0, #6200ea); /* Reverse gradient on hover */
+    transform: translateY(-3px); /* Slight lift on hover */
+    box-shadow: 0 8px 20px rgba(98, 0, 234, 0.6); /* Brighter shadow on hover */
+}
+
+.back-to-home:active {
+    transform: translateY(1px); /* Slight press effect */
+}
+/* تنسيق النافذة المنبثقة */
+.modal {
+    display: none; /* إخفاء النموذج في البداية */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* خلفية شفافة */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 80%;
+}
+
+.modal-content h2 {
+    color: #3a3d98;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    background-color: #6200ea;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.modal-content button:hover {
+    background-color: #9c27b0;
+}
+.success-message {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    background: linear-gradient(90deg, #ffdd00, #ffbb33, #ff8800, #ffbb33, #ffdd00);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: goldenTextAnimation 3s ease infinite;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+/* حركة التدرج */
+@keyframes goldenTextAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* تنسيق إضافي للنموذج */
+.modal-content {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 80%;
+    animation: showModal 0.5s ease;
+}
+
+@keyframes showModal {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="contact-section">
+        <h1>Contact Us</h1>
+        <p>We welcome all your inquiries and feedback. You can contact us through the form below.</p>
+        
+        <div class="contact-form">
+            
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+        
+            <button type="submit">
+                <span>Send</span> <img src="https://cdn-icons-png.flaticon.com/512/60/60525.png" alt="send icon" width="16" height="16">
+            </button>
+            
+            <div id="confirmationModal" class="modal">
+                <div class="modal-content">
+                    <h2 class="success-message">Your message has been sent successfully!</h2>
+                    <p>Thank you for reaching out. We will respond to your inquiry as soon as possible.</p>
+                    <button onclick="closeModal()">Close</button>
+                    <dotlottie-player src="https://lottie.host/2a9a1099-240c-4068-bbcc-b333841cf2b2/rKevPq2rBS.json" background="transparent" speed="1" style="width: 50px; height: 50px; position: absolute;" loop autoplay></dotlottie-player>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+            <p>You can also reach us via email:</p>
+            <p><a href="mailto:dalom2004@gmail.com">Muhammed Umed</a></p>
+            <p><a href="mailto:manvirschweitzer6684@gmail.com">Habeel Butrus</a></p>
+            <p><a href="mailto:abdullasardar34@gmail.com">Abdullah Sardar</a></p>
+            
+            <div class="social-media">
+                <h3>Follow us on social media</h3>
+                <a href="https://www.instagram.com/habil_khorany" class="social-icon" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram Icon" width="24" height="24">
+                    Habeel Butrus
+                </a>
+                <a href="https://www.instagram.com/3b0.k" class="social-icon" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram Icon" width="24" height="24">
+                    Abdullah Sardar
+                </a>
+                <a href="https://www.instagram.com/d41.7" class="social-icon" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram Icon" width="24" height="24">
+                    Muhammed Umed
+                </a>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="index.html" class="back-to-home">
+                Return to Home Page
+            </a>
+        </div>
+        
+    </div>
+    
+
+    <script>
+        document.querySelector(".contact-form button").addEventListener("click", function() {
+            let audio = new Audio("mixkit-correct-answer-tone-2870.wav");
+            audio.play();
+        });
+    </script>
+    <script>
+        document.querySelector(".contact-form button").addEventListener("click", function() {
+            const button = this;
+    
+            // أعد مظهر الزر للوضع الطبيعي بعد 200 مللي ثانية
+            setTimeout(() => {
+                button.style.background = ''; // إعادة الخلفية الأصلية
+                button.style.transform = '';  // إعادة الحجم الأصلي
+            }, 200);
+        });
+    </script>
+    <script>
+        // دالة لإظهار النموذج
+function showModal() {
+    document.getElementById("confirmationModal").style.display = "flex";
+}
+
+// دالة لإغلاق النموذج
+function closeModal() {
+    document.getElementById("confirmationModal").style.display = "none";
+}
+
+// استدعاء النموذج عند الضغط على زر الإرسال
+document.querySelector(".contact-form button").addEventListener("click", function(event) {
+    event.preventDefault(); // منع إرسال النموذج الفعلي
+    showModal(); // إظهار النافذة المنبثقة
+});
+
+    </script>
+    
+    
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>     
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معلومات الأستاذ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f3f4f6, #dfe7fd);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .info-card {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 0 0 15px 5px #0077b6;
+        }
+
+        /* خلفية داكنة */
+        /*.neural-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 220px;
+            background-color: rgba(176, 125, 171, 0.85);
+            z-index: 0;
+        }*/
+
+        /* النودات */
+        .network-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            z-index: 1;
+        }
+
+        .node {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #00b4d8;
+            border-radius: 50%;
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.5); }
+        }
+
+        .professor-img {
+            top: 1%;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin-bottom: 30px;
+            border: 3px solid #0077b6;
+            object-fit: cover;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* الروبوت المتحرك على اليسار */
+        .robot-animation-left {
+            position: absolute;
+            top: 50px;
+            left: 30px;
+            width: 170px;
+            height: 170px;
+            z-index: 2;
+        }
+
+        /* الروبوت المتحرك على اليمين */
+        .robot-animation-right {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 190px;
+            height: 190px;
+            z-index: 2;
+        }
+
+        h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    z-index: 1;
+    background: linear-gradient(270deg, #4b0082, #6a0dad, #8a2be2, #48cae4, #00b4d8, #0077b6);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradientShift 4s linear infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+        p {
+            color: #000000;
+            z-index: 2;
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p.specialization {
+            color: #000000;
+            z-index: 2;
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info-section {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+            z-index: 2;
+        }
+
+        .info-section h3 {
+            font-size: 1.2rem;
+            color: #0077b6;
+            margin-bottom: 10px;
+        }
+
+        .info-section p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0077b6;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 2;
+        }
+
+        .btn-back:hover {
+            background-color: #005f99;
+        }
+
+        /* استعلامات الوسائط للأجهزة المحمولة */
+        @media (max-width: 650px) {
+            .robot-animation-right {
+                right: 20px;
+                top: 30px;
+                width: 150px;
+                height: 150px;
+            }
+            .robot-animation-left {
+                top: 30px;
+                width: 150px;
+                height: 150px;
+            }
+            .professor-img {
+                width: 155px;
+                height: 155px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .info-section h3 {
+                font-size: 1rem;
+            }
+            .info-section p {
+                font-size: 0.9rem;
+            }
+        }
+        @media (max-width: 450px) {
+            .robot-animation-right {
+                right: 2px;
+                top: 95px;
+                width: 110px;
+                height: 110px;
+            }
+            .robot-animation-left {
+                left: 2px;
+                top: 100px;
+                width: 100px;
+                height: 100px;
+            }
+            .professor-img {
+                width: 155px;
+                height: 155px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .info-section h3 {
+                font-size: 1rem;
+            }
+            .info-section p {
+                font-size: 0.9rem;
+            }
+        }
+        /* تنسيق الرابط النصي */
+        .research-link-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        .research-link {
+            color: #0077b6;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .research-link:hover {
+            color: #005f99;
+        }
+
+        /* تأثير الخط المتحرك أسفل النص */
+        .research-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: #005f99;
+            transition: width 0.3s ease;
+        }
+
+        .research-link:hover::after {
+            width: 100%;
+        }
+
+        /* تخصيص حجم النموذج المتحرك */
+        dotlottie-player.research-icon {
+            width: 80px;
+            height: 80px;
+        }
+        /* تنسيقات الحاوية للرابط والنموذج */
+        .cv-link-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* تصميم الزر */
+        .cv-link {
+            color: #0077b6;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: #e0f7ff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cv-link:hover {
+            background-color: #cceeff;
+        }
+
+        /* تخصيص حجم النموذج المتحرك */
+        dotlottie-player.cv-icon {
+            width: 80px;
+            height: 80px;
+        }
+        /* خلفية موجات ديناميكية */
+.neural-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, rgba(176, 125, 171, 0.85), rgba(0, 119, 182, 0.7));
+    z-index: 0;
+    overflow: hidden;
+}
+
+@keyframes wave {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(50%);
+    }
+}
+
+.wave {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0.7;
+    border-radius: 50%;
+    animation: wave 8s infinite linear;
+}
+
+.wave:nth-child(1) {
+    top: -50%;
+    left: -50%;
+    width: 150%;
+    height: 150%;
+    animation-duration: 12s;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.wave:nth-child(2) {
+    top: -60%;
+    left: -40%;
+    width: 160%;
+    height: 160%;
+    animation-duration: 15s;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.wave:nth-child(3) {
+    top: -70%;
+    left: -30%;
+    width: 180%;
+    height: 180%;
+    animation-duration: 18s;
+    background: rgba(255, 255, 255, 0.05);
+}
+.wave:nth-child(4) {
+    top: -65%;
+    left: -55%;
+    width: 140%;
+    height: 140%;
+    animation-duration: 20s;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.wave:nth-child(5) {
+    top: -75%;
+    left: -25%;
+    width: 190%;
+    height: 190%;
+    animation-duration: 22s;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+
+        
+    </style>
+</head>
+<body>
+
+    <div class="info-card">
+        <!-- خلفية داكنة -->
+        <div class="neural-background"></div>
+
+        <!-- النودات فقط بدون الخطوط -->
+        <div class="neural-background">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+        
+
+        <!-- الروبوت المتحرك على اليسار -->
+        <div class="robot-animation-left">
+            <dotlottie-player src="https://lottie.host/d420ac0d-184e-46f8-9658-c3868bac6a4b/5wub10c5s0.json" background="transparent" speed="0.5"  loop autoplay></dotlottie-player>
+        </div>
+
+        <!-- الروبوت المتحرك على اليمين -->
+        <div class="robot-animation-right">
+            <dotlottie-player src="https://lottie.host/031f822d-3105-47fe-a1e4-d9699bad47ff/tQYJy7MPXT.json" background="transparent" speed="1" loop autoplay></dotlottie-player>
+        </div>
+
+        <!-- صورة الأستاذ -->
+        <img src="drfatima.jfif" alt="صورة الأستاذ" class="professor-img">
+
+        <!-- الاسم والتخصص -->
+        <br><h2><b>FATIMATELBATOUL MAHMOUD HUSARI</b></h2>
+        <p class="specialization">Specialization: Electrical Engineering & Artificial Intelligence</p>
+
+        <!-- قسم المعلومات الأساسية -->
+        <div class="info-section">
+            <h3>Academic qualifications</h3>
+            <p>She holds a Doctorate (Ph.D.) in Condition Monitoring and Diagnostics in Induction Machine Drives using Deep learning Techniques</p>
+        </div>
+
+        <!-- قسم سنوات الخبرة -->
+        <div class="info-section">
+            <h3>Years of experience</h3>
+            <p><b>7 Years</b> of teaching and research in the field of <b>Artificial Intelligence & Data Analysis Engineering ,Hands-on experience with various embedded systems and tools, including MATLAB, C, C#, C++, LaTeX, LABVIEW, OrCAD, and Python.</b></p>
+        </div>
+
+        <!-- قسم الأبحاث والمنشورات -->
+        <div class="info-section">
+            <h3>Research and publications</h3>
+            <p>Her research focuses on Predictive Maintenance, Data Science, Deep Learning, as well as Monitoring and Diagnostics.</p>
+        </div>
+
+        <!-- قسم المقررات التي يقوم بتدريسها -->
+        <div class="info-section">
+            <h3>Courses taught</h3>
+            <p>Big Data, Operating System, Artificial Intelligence, Data Mining, Algorithm Design and Programming, Programming Languages, Electrical Machines and Drives, Programmable Logic Controller, Industrial Automation, Research Methods, Image Processing and Multimedia</p>
+        </div>
+        <div class="research-link-container">
+            <a href="https://scholar.google.com/citations?user=fL8fde8AAAAJ" class="research-link">See the professor's research</a>
+            <dotlottie-player class="research-icon"
+                src="https://lottie.host/2506c4c0-7c7e-4016-ad94-dd009b0595b0/A706HNN9p3.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay>
+            </dotlottie-player>
+        </div>
+        
+
+        <!-- زر العودة -->
+        <a href="index.html" class="btn-back">Return back to the home page</a>
+    </div>
+
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+</body>
+</html>

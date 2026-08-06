@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معلومات الأستاذ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f3f4f6, #dfe7fd);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .info-card {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 0 0 15px 5px #0077b6;
+            z-index: 1;
+        }
+
+        .map-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: url('global-network-connection-world-map-digital-background_1017-23322.avif') no-repeat center center;
+            background-size: cover;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .centered-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .professor-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 3px solid #0077b6;
+            object-fit: cover;
+        }
+
+        h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    z-index: 1;
+    background: linear-gradient(270deg, #003f88, #005f99, #0077b6, #0096c7, #48cae4, #90e0ef);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradientShift 7s linear infinite;
+}
+
+/* حركة التدرج */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+
+        .info-section {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+            z-index: 1;
+        }
+
+        .info-section h3 {
+            font-size: 1.2rem;
+            color: #0077b6;
+            margin-bottom: 10px;
+        }
+
+        .info-section p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0077b6;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 1;
+        }
+
+        .btn-back:hover {
+            background-color: #005f99;
+        }
+
+        /* تخصيص للنماذج */
+        dotlottie-player.left {
+            width: 190px;
+            height: 190px;
+            position: absolute;
+            top: 30px;
+            left: 10px;
+        }
+
+        dotlottie-player.right {
+            width: 220px;
+            height: 220px;
+            position: absolute;
+            top: 50px;
+            right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .professor-img {
+                margin-top: 50px;
+                width: 190px;
+                height: 190px;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .info-section h3 {
+                font-size: 1.1rem;
+            }
+            .info-section p {
+                font-size: 0.95rem;
+            }
+            dotlottie-player.left,
+            dotlottie-player.right {
+                width: 180px;
+                height: 180px;
+                top: 70px;
+            }
+            .map-background {
+            height: 30%;
+        }
+        }
+
+        @media (max-width: 480px) {
+            .info-card {
+                padding: 10px;
+            }
+            .centered-content {
+                flex-direction: column;
+            }
+            .professor-img {
+                margin-top: 80px;
+                width: 150px;
+                height: 150px;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+            .info-section h3 {
+                font-size: 1rem;
+            }
+            .info-section p {
+                font-size: 0.9rem;
+            }
+            .btn-back {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+            dotlottie-player.left,
+            dotlottie-player.right {
+                width: 120px;
+                height: 120px;
+                top: 100px;
+            }
+            .map-background {
+            height: 30%;
+        }
+        }
+        /* تنسيق الرابط النصي */
+        .research-link-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        .research-link {
+            color: #0077b6;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .research-link:hover {
+            color: #005f99;
+        }
+
+        /* تأثير الخط المتحرك أسفل النص */
+        .research-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: #005f99;
+            transition: width 0.3s ease;
+        }
+
+        .research-link:hover::after {
+            width: 100%;
+        }
+
+        /* تخصيص حجم النموذج المتحرك */
+        dotlottie-player.research-icon {
+            width: 80px;
+            height: 80px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="info-card">
+        <div class="map-background">
+            <canvas id="networkCanvas"></canvas>
+        </div>
+
+        <div class="centered-content">
+            <!-- نموذج يسار الصورة -->
+            <dotlottie-player class="left" 
+                src="https://lottie.host/8d35b2e5-0326-4286-bba2-0d71d2cb54bd/mGIznwkTpt.json" 
+                background="transparent" 
+                speed="0.6" 
+                loop 
+                autoplay></dotlottie-player>
+
+            <!-- صورة الأستاذ -->
+            <img src="Adil-Hussain-Mohammed-200x200.jpg" alt="صورة الأستاذ" class="professor-img">
+
+            <!-- نموذج يمين الصورة -->
+            <dotlottie-player class="right" 
+                src="https://lottie.host/ced7e25d-ae41-4b73-813f-26f30fe726b9/muHR17Zscd.json" 
+                background="transparent" 
+                speed="1" 
+                loop 
+                autoplay></dotlottie-player>
+        </div>
+
+        <!-- باقي المحتوى -->
+        <br><br><br><br><br><h2 ><b>Adil Hussein Mohammed</b></h2>
+        <br><p>Specialization: Communication Engineering</p><br>
+        <div class="info-section">
+            <h3>Academic qualifications</h3>
+            <p>Master’s in Data Management from France</p>
+        </div>
+        <div class="info-section">
+            <h3>Years of experience</h3>
+            <p>35 Years of teaching and research in the field of Communication and software Engineering</p>
+        </div>
+        <div class="info-section">
+            <h3>Research and publications</h3>
+            <p>Published several research papers in the field of artificial intelligence and machine learning and many other about 120 researches. He participated in international conferences and has research papers published in scientific journals.</p>
+        </div>
+        <div class="info-section">
+            <h3>Courses taught</h3>
+            <p>Data visualization, Artificial Intelligence, Embedded System, Robotics, and IOT</p>
+        </div>
+        <div class="research-link-container">
+            <a href="https://scholar.google.com/citations?user=BACLO8MAAAAJ" class="research-link">See the professor's research</a>
+            <dotlottie-player class="research-icon"
+                src="https://lottie.host/2506c4c0-7c7e-4016-ad94-dd009b0595b0/A706HNN9p3.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay>
+            </dotlottie-player>
+        </div>
+
+        <!-- زر العودة -->
+        <a href="index.html" class="btn-back">Return back to the home page</a>
+    </div>
+
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+    
+    <script>
+        const canvas = document.getElementById("networkCanvas");
+        const ctx = canvas.getContext("2d");
+    
+        // ضبط حجم الكانفس ليتماشى مع حجم العنصر الأب
+        function resizeCanvas() {
+            const parent = document.querySelector('.map-background');
+            canvas.width = parent.offsetWidth;
+            canvas.height = parent.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+    
+        const particles = [];
+        const particleCount = 50;
+        const maxDistance = 150;
+    
+        class Particle {
+            constructor(x, y, vx, vy) {
+                this.x = x;
+                this.y = y;
+                this.vx = vx;
+                this.vy = vy;
+                this.radius = 3;
+            }
+    
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = "#48cae4"; // لون النقاط
+                ctx.fill();
+            }
+    
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+    
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+        }
+    
+        for (let i = 0; i < particleCount; i++) {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            const vx = (Math.random() - 0.5) * 2;
+            const vy = (Math.random() - 0.5) * 2;
+            particles.push(new Particle(x, y, vx, vy));
+        }
+    
+        function drawConnections() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+    
+                    if (distance < maxDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(72, 202, 228, ${1 - distance / maxDistance})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+    
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((particle) => {
+                particle.update();
+                particle.draw();
+            });
+            drawConnections();
+            requestAnimationFrame(animate);
+        }
+    
+        animate();
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاكاة الأقمار الصناعية مع كوكب منحني</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: black;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="simulationCanvas" width="1600" height="1000"></canvas>
+    <script>
+        const canvas = document.getElementById("simulationCanvas");
+        const ctx = canvas.getContext("2d");
+
+        const earth = { x: 800, y: 1500, radius: 1000 }; // موقع الأرض أسفل الشاشة
+        const satellites = [
+            { x: 400, y: 300, name: "CALIPSO", color: "purple", waves: [] },
+            { x: 700, y: 270, name: "CloudSat", color: "red", waves: [] },
+            { x: 900, y: 240, name: "Aqua", color: "yellow", waves: [] },
+            { x: 1200, y: 270, name: "GCOM-W1", color: "blue", waves: [] },
+            { x: 1400, y: 300, name: "OCO-2", color: "green", waves: [] },
+        ];
+
+        // توليد النجوم العشوائية
+        const stars = [];
+        for (let i = 0; i < 300; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 3,
+                opacity: Math.random()
+            });
+        }
+
+        // رسم النجوم
+        function drawStars() {
+            stars.forEach(star => {
+                ctx.globalAlpha = star.opacity;
+                ctx.fillStyle = "white";
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.closePath();
+            });
+            ctx.globalAlpha = 1;
+        }
+
+        // رسم القوس العلوي للأرض
+        function drawEarth() {
+            // رسم المحيطات (قوس الأرض)
+            ctx.beginPath();
+            ctx.arc(earth.x, earth.y, earth.radius, Math.PI * 1.2, Math.PI * 1.8);
+            const gradient = ctx.createRadialGradient(earth.x, earth.y, earth.radius * 0.8, earth.x, earth.y, earth.radius);
+            gradient.addColorStop(0, "#004080");
+            gradient.addColorStop(1, "black");
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            ctx.closePath();
+
+            // إضافة تأثير الغلاف الجوي
+            ctx.beginPath();
+            ctx.arc(earth.x, earth.y, earth.radius, Math.PI * 1.2, Math.PI * 1.8);
+            ctx.strokeStyle = "rgba(135, 206, 250, 0.5)";
+            ctx.lineWidth = 15;
+            ctx.stroke();
+            ctx.closePath();
+        }
+
+        // رسم قمر صناعي
+        function drawSatellite(satellite) {
+            ctx.fillStyle = "white";
+            ctx.beginPath();
+            ctx.arc(satellite.x, satellite.y, 15, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.closePath();
+
+            ctx.fillStyle = "#fff";
+            ctx.font = "16px Arial";
+            ctx.fillText(satellite.name, satellite.x - 30, satellite.y - 20);
+        }
+
+        // رسم الموجات الدائرية
+        function drawWaves(satellite) {
+            // إزالة الموجات التي تجاوزت حجم معين
+            satellite.waves = satellite.waves.filter(wave => wave.radius < 900);
+
+            // تحديث ورسم الموجات
+            satellite.waves.forEach(wave => {
+                ctx.beginPath();
+                ctx.arc(satellite.x, satellite.y, wave.radius, 0, Math.PI * 2);
+                ctx.strokeStyle = `rgba(${wave.color[0]}, ${wave.color[1]}, ${wave.color[2]}, ${wave.opacity})`;
+                ctx.lineWidth = 3;
+                ctx.stroke();
+                ctx.closePath();
+
+                // توسيع الموجة وتقليل الشفافية
+                wave.radius += 3;
+                wave.opacity -= 0.005;
+            });
+
+            // إضافة موجة جديدة بشكل دوري
+            if (Math.random() < 0.03) {
+                satellite.waves.push({
+                    radius: 0,
+                    opacity: 1,
+                    color: satellite.color === "purple" ? [128, 0, 128] :
+                           satellite.color === "red" ? [255, 0, 0] :
+                           satellite.color === "yellow" ? [255, 255, 0] :
+                           satellite.color === "blue" ? [0, 0, 255] : [0, 128, 0]
+                });
+            }
+        }
+
+        // تحديث الرسوم
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // رسم النجوم
+            drawStars();
+
+            // رسم الأرض
+            drawEarth();
+
+            // رسم الأقمار الصناعية والموجات الدائرية
+            satellites.forEach(satellite => {
+                drawSatellite(satellite);
+                drawWaves(satellite);
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        // بدء المحاكاة
+        animate();
+    </script>
+</body>
+</html>

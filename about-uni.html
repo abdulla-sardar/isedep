@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جامعة جيهان - أربيل</title>
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0, #8a2be2);
+            background-size: 300% 300%;
+            animation: gradientBackground 10s ease infinite;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        @keyframes gradientBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: #000;
+            background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #8a2be2);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textEffect 5s infinite, shadowMove 2s infinite, bounce 3s infinite;
+            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6), 0px 0px 20px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes textEffect {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes shadowMove {
+            0%, 100% {
+                text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6), 0px 0px 20px rgba(255, 255, 255, 0.8);
+            }
+            50% {
+                text-shadow: 0px 0px 15px rgba(255, 255, 255, 1), 0px 0px 30px rgba(255, 255, 255, 1);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #000;
+            text-shadow: 2px 2px 10px #ff0080, -2px -2px 10px #40e0d0;
+            animation: fadeIn 3s ease, shadowColor 10s infinite alternate;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes shadowColor {
+            0% {
+                text-shadow: 2px 2px 10px #ff0080, -2px -2px 10px #40e0d0;
+            }
+            50% {
+                text-shadow: 2px 2px 10px #ff8c00, -2px -2px 10px #8a2be2;
+            }
+            100% {
+                text-shadow: 2px 2px 10px #40e0d0, -2px -2px 10px #ff0080;
+            }
+        }
+
+        .about-section {
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        ul {
+            text-align: left;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: #000;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #6200ea, #9c27b0);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0px 5px 15px rgba(98, 0, 234, 0.5);
+        }
+
+        a:hover {
+            background: linear-gradient(135deg, #9c27b0, #6200ea);
+            transform: scale(1.1);
+            box-shadow: 0px 8px 20px rgba(98, 0, 234, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="about-section">
+        <h1>Cihan University - Erbil</h1>
+        <p>
+            Cihan University - Erbil is a leading private university in the Kurdistan region of Iraq. Established in 2007, it offers a variety of academic programs accredited by the Ministry of Higher Education in Iraq and the Kurdistan Region.
+        </p>
+        <h2>Academic Departments</h2>
+        <ul>
+            <li>Engineering</li>
+            <li>Computer Science</li>
+            <li>Media</li>
+            <li>Law</li>
+            <li>Business Administration</li>
+            <li>Health Sciences</li>
+            <li>Arts and Humanities</li>
+        </ul>
+        <h2>University Goals</h2>
+        <ul>
+            <li>Provide an integrated educational environment that encourages creativity and innovation.</li>
+            <li>Prepare graduates to compete in both local and international job markets.</li>
+            <li>Contribute to the development of scientific research and community service.</li>
+        </ul>
+        <h2>University Statistics</h2>
+        <ul>
+            <li>Over 18,000 students.</li>
+            <li>320 faculty members.</li>
+            <li>128 classrooms and laboratories.</li>
+            <li>27 specializations.</li>
+        </ul>
+        <a href="index.html">Return to Home Page</a>
+    </div>
+    
+</body>
+</html>

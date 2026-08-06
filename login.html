@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Fira Code', monospace;
+      background: black;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    .background {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: conic-gradient(at top, rgb(255,0,128), rgb(0,255,255), rgb(0,128,255), rgb(255,0,128));
+      animation: rotate 10s linear infinite;
+      opacity: 0.15;
+      filter: blur(80px);
+      z-index: -3;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .grid-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: -2;
+      pointer-events: none;
+      animation: pulseGrid 8s ease-in-out infinite;
+    }
+
+    @keyframes pulseGrid {
+      0%, 100% { opacity: 0.04; }
+      50% { opacity: 0.08; }
+    }
+
+    .floating-icon {
+      position: absolute;
+      color: #00ffff;
+      font-size: 16px;
+      opacity: 0.8;
+      pointer-events: none;
+      animation: floatIcon 12s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes floatIcon {
+      0% { transform: translateY(-20px); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      backdrop-filter: blur(18px);
+      padding: 35px 30px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.4);
+      color: white;
+      animation: fadeIn 0.8s ease-out forwards;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.98); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .glass-card h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 20px;
+      color: #00ffff;
+      letter-spacing: 1px;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      margin: 0 auto 25px;
+      animation: typing 2.5s steps(20, end) forwards;
+    }
+
+    @keyframes typing {
+      0% { width: 0 }
+      100% { width: 100% }
+    }
+
+    .terminal-line {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid #00ffff33;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: 'Fira Code', monospace;
+      color: #00ffff;
+      width: 100%;
+      margin-bottom: 16px;
+      font-size: 14px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 48px;
+      box-sizing: border-box;
+    }
+
+    .terminal-line::before {
+      content: attr(data-label);
+      color: #00ffffaa;
+      margin-right: 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .input-wrap {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .display-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .blinking-cursor {
+      display: inline-block;
+      width: 8px;
+      background-color: #00ffff;
+      margin-left: 4px;
+      animation: blink 1s step-start infinite;
+      height: 1.2em;
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .hidden-input {
+      opacity: 0;
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 2;
+      caret-color: transparent;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(to right, #00ffff80, #00bfff80);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background: linear-gradient(to right, #00ffffcc, #00bfffcc);
+      transform: scale(1.02);
+    }
+
+    .link-text {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .link-text a {
+      color: #00ffff;
+      text-decoration: none;
+    }
+
+    .link-text a:hover {
+      text-decoration: underline;
+    }
+    .back-home-btn {
+  display: block;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: linear-gradient(to right, #00ffffaa, #00ffaaaa);
+  color: black;
+  font-weight: bold;
+  border-radius: 8px;
+  text-align: center;
+  font-family: 'Fira Code', monospace;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #00ffaa88;
+}
+
+.back-home-btn:hover {
+  background: linear-gradient(to right, #00ffffcc, #00ffaacc);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00ffaa;
+}
+
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="grid-overlay"></div>
+  <div class="glass-card">
+    <h2>Login for the staff</h2>
+    <form>
+      <div class="terminal-line" data-label="> Enter your email: " onclick="emailInput.focus()">
+        <div class="input-wrap">
+          <span class="display-text" id="email-display"></span>
+        </div>
+        <input type="email" id="emailInput" class="hidden-input" required>
+      </div>
+
+      <div class="terminal-line" data-label="> Enter your password: " onclick="passwordInput.focus()">
+        <div class="input-wrap">
+          <span class="display-text" id="password-display"></span>
+        </div>
+        <input type="password" id="passwordInput" class="hidden-input" required>
+      </div>
+
+      <button class="login-btn" type="submit">Register / Login</button>
+    </form>
+    <div class="link-text">
+      <p><a href="forgot-password.html">Forgot Password?</a></p>
+      <p>Don't have an account? <a href="singin.html">Sign Up</a></p>
+    </div>
+    <a href="index.html" class="back-home-btn">← Back to Home</a>
+
+  </div>
+
+  <script>
+    const emailInput = document.getElementById("emailInput");
+    const passwordInput = document.getElementById("passwordInput");
+    const emailDisplay = document.getElementById("email-display");
+    const passwordDisplay = document.getElementById("password-display");
+
+    const cursor = '<span class="blinking-cursor"></span>';
+
+    function updateEmailDisplay() {
+      emailDisplay.innerHTML = emailInput.value + cursor;
+    }
+
+    function updatePasswordDisplay() {
+      passwordDisplay.innerHTML = '*'.repeat(passwordInput.value.length) + cursor;
+    }
+
+    emailInput.addEventListener("input", updateEmailDisplay);
+    passwordInput.addEventListener("input", updatePasswordDisplay);
+
+    emailInput.addEventListener("focus", updateEmailDisplay);
+    emailInput.addEventListener("blur", () => {
+      emailDisplay.innerHTML = emailInput.value;
+    });
+
+    passwordInput.addEventListener("focus", updatePasswordDisplay);
+    passwordInput.addEventListener("blur", () => {
+      passwordDisplay.innerHTML = '*'.repeat(passwordInput.value.length);
+    });
+
+    window.onload = () => {
+      emailInput.focus();
+      updateEmailDisplay();
+    };
+
+    const snippets = [
+      "console.log('Hello, World!');", "print('Hello, Python')", "System.out.println('Java');", "#include<iostream>",
+      "echo 'Hello from PHP';", "SELECT * FROM users;", "ls -la", "<h1>Hello HTML</h1>", "body { color: white; }",
+      "def greet():", "function greet() {}", "class Car {}", "let x = 5;", "var_dump($array);", "git status",
+      "curl http://api.com", "for i in range(10):", "document.getElementById()", "window.onload = function(){}",
+      "try { } catch(e) {}", "if (x > y) {}", "print('Data Science')", "SELECT COUNT(*) FROM logs;",
+      "npm install express", "<div class='box'></div>", "cd /var/www", "chmod 755 script.sh",
+      "echo 'Deployment successful!'", "import pandas as pd", "const express = require('express')",
+      "public static void main"
+    ];
+
+    function createFloatingCode() {
+      const div = document.createElement("div");
+      div.className = "floating-icon";
+      div.textContent = snippets[Math.floor(Math.random() * snippets.length)];
+      div.style.left = Math.random() * 90 + "%";
+      div.style.top = "-50px";
+      div.style.fontSize = "12px";
+      div.style.animationDuration = (8 + Math.random() * 8) + "s";
+      document.body.appendChild(div);
+      setTimeout(() => div.remove(), 16000);
+    }
+
+    setInterval(createFloatingCode, 500);
+    // إرسال بيانات تسجيل الدخول إلى login.php
+document.querySelector("form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+
+  if (!email || !password) {
+    alert("❌ Please fill in both fields.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("email", email);
+  formData.append("password", password);
+
+  try {
+    const res = await fetch("login.php", {
+      method: "POST",
+      body: formData
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      document.querySelector(".glass-card").innerHTML = `
+        <h2 style="color:#00ffff;text-align:center;font-family:'Fira Code';font-size:18px;">
+          ✅ Welcome back, <span style="color:lime">${result.name}</span><br>
+          <small style="color:#ccc">Role: ${result.role} | Dept: ${result.department}</small>
+        </h2>
+      `;
+      setTimeout(() => {
+        window.location.href = "dashboard.html"; // عدل المسار حسب مكان تحويلك
+      }, 3000);
+    } else {
+      alert(result.message || "❌ Incorrect email or password.");
+    }
+
+  } catch (error) {
+    console.error("Login error:", error);
+    alert("❌ Server error. Please try again.");
+  }
+});
+
+  </script>
+</body>
+</html>

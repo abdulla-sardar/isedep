@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معلومات الأستاذ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f3f4f6, #dfe7fd);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .info-section h3 {
+            font-size: 1.2rem;
+            color: #0077b6;
+            margin-bottom: 10px;
+        }
+
+        .info-card {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 0 0 15px 5px #0077b6;
+        }
+
+        .matrix-rain-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 220px; /* Matrix effect limited to this height */
+            background: #0f0f0f;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        /* Matrix rain animation styles */
+        .matrix-column {
+            position: absolute;
+            top: 0;
+            font-family: monospace;
+            color: #00ff00;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: fall 7s linear infinite;
+        }
+
+        .matrix-char {
+            display: block;
+            opacity: 0;
+            animation: fade 0.75s linear infinite;
+        }
+
+        @keyframes fade {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .professor-img {
+            top: 1%;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin-bottom: 30px;
+            border: 3px solid #0077b6;
+            object-fit: cover;
+            z-index: 2;
+            position: relative;
+        }
+
+        h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    z-index: 1;
+    background: linear-gradient(270deg, #003f5c, #007f5f, #2f4b7c, #665191, #a05195, #d45087, #003f5c);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradientShift 4s linear infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+        .info-section {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+            z-index: 2;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0077b6;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 2;
+        }
+
+        .btn-back:hover {
+            background-color: #005f99;
+        }
+                /* استعلامات الوسائط للأجهزة المحمولة */
+              /* استعلامات الوسائط للأجهزة المحمولة */
+        @media (max-width: 650px) {
+            .robot-animation-right {
+                right: 20px;
+                top: 30px;
+                width: 150px;
+                height: 150px;
+            }
+            .robot-animation-left {
+                top: 30px;
+                width: 150px;
+                height: 150px;
+            }
+            .professor-img {
+                width: 155px;
+                height: 155px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .info-section h3 {
+                font-size: 1rem;
+            }
+            .info-section p {
+                font-size: 0.9rem;
+            }
+        }
+        @media (max-width: 450px) {
+            .robot-animation-right {
+                right: 1px !important;
+                top: 85px !important;
+                width: 110px !important;
+                height: 100px;
+            }
+            .robot-animation-left {
+                left: 1px !important;
+                top: 85px !important;
+                width: 120px !important;
+                height: 120px;
+            }
+            .professor-img {
+                width: 155px;
+                height: 155px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .info-section h3 {
+                font-size: 1rem;
+            }
+            .info-section p {
+                font-size: 0.9rem;
+            }
+            .matrix-column {
+            position: absolute;
+            top: 0;
+            font-family: monospace;
+            color: #00ff00;
+            font-size: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: fall 7s linear infinite;
+        }
+        }
+        /* تنسيق الرابط النصي */
+        .research-link-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        .research-link {
+            color: #0077b6;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .research-link:hover {
+            color: #005f99;
+        }
+
+        /* تأثير الخط المتحرك أسفل النص */
+        .research-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: #005f99;
+            transition: width 0.3s ease;
+        }
+
+        .research-link:hover::after {
+            width: 100%;
+        }
+
+        /* تخصيص حجم النموذج المتحرك */
+        dotlottie-player.research-icon {
+            width: 80px;
+            height: 80px;
+        }
+        /* تنسيقات الحاوية للرابط والنموذج */
+        .cv-link-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* تصميم الزر */
+        .cv-link {
+            color: #0077b6;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: #e0f7ff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cv-link:hover {
+            background-color: #cceeff;
+        }
+
+        /* تخصيص حجم النموذج المتحرك */
+        dotlottie-player.cv-icon {
+            width: 80px;
+            height: 80px;
+        }
+        /* الروبوت المتحرك على اليسار */
+        .robot-animation-left {
+            position: absolute;
+            top: 50px;
+            left: 30px;
+            width: 170px;
+            height: 170px;
+            z-index: 2;
+        }
+
+        /* الروبوت المتحرك على اليمين */
+        .robot-animation-right {
+            position: absolute;
+            top: 50px;
+            right: 30px;
+            width: 170px;
+            height: 170px;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="info-card">
+        <div class="matrix-rain-background" id="matrix-background">
+            <!-- Matrix rain effect will be generated here -->
+        </div>
+        <div class="robot-animation-left">
+            <dotlottie-player src="https://lottie.host/cd37d98c-d4f5-406e-b344-007abbaa8bb9/WPaGT0cYr8.json" background="transparent" speed="1"  loop autoplay></dotlottie-player>
+        </div>
+
+        <!-- الروبوت المتحرك على اليمين -->
+        <div class="robot-animation-right">
+            <dotlottie-player src="https://lottie.host/1c83d634-ec70-42ac-80a2-7f05b4a27057/JdYajv6c0L.json" background="transparent" speed="1"  loop autoplay></dotlottie-player>
+        </div>
+
+        <!-- صورة الأستاذ -->
+        <img src="photo_2024-11-13_11-18-31.jpg" alt="صورة الأستاذ" class="professor-img">
+
+        <!-- الاسم والتخصص -->
+        <br><h2><b>Ghassan A. QasMarrogy</b></h2>
+        <p class="specialization">Wireless Networks and Security</p>
+
+        <!-- قسم المعلومات الأساسية -->
+        <div class="info-section">
+            <h3>Academic qualifications</h3>
+            <p>He holds a Assistant Professor degree in Wireless Networks and Security.</p>
+        </div>
+
+        <!-- قسم سنوات الخبرة -->
+        <div class="info-section">
+            <h3>Years of experience</h3>
+            <p><b>18 Years</b> of teaching and research in the field of <b>Cloud Computing, Computer Network, Network Technologies, Information Security Technology.</b></p>
+        </div>
+        <div>
+            <img src="kisspng-cisco-systems-wireless-access-points-computer-netw-networking-hardware-5b1bac40e9e414.097427201528540224958.png" alt="cisco" style="width: 80px;">
+        </div>
+
+        <!-- قسم الأبحاث والمنشورات -->
+        <div class="info-section">
+            <h3>Research and publications</h3>
+            <p>He has published numerous research papers in the fields of Data Communication ,Wireless Networks,Channel Medium and Communication Security ,Telecommunication,Digital Communication,Multimedia Communications,Ad-Hoc Netowrks (MANETS),Secure Networks, with over 103 citations and an h-index of 8, reflecting his academic impact in these fields. he has participated in several international conferences, and his work has been published in esteemed scientific journals.</p>
+        </div>
+
+        <!-- قسم المقررات التي يقوم بتدريسها -->
+        <div class="info-section">
+            <h3>Courses taught</h3>
+            <p>Cloud Computing, Computer Network, Network Technologies, Information Security Technology.</p>
+        </div>
+        <div class="research-link-container">
+            <a href="https://scholar.google.com/citations?user=qt5m6iUAAAAJ" class="research-link">See the professor's research</a>
+            <dotlottie-player src="https://lottie.host/6ecc2e65-89fb-42a1-97b2-18b20c41fab9/Q2mOLc3TwP.json" background="transparent" speed="1" style="width: 80px; height: 80px;" loop autoplay></dotlottie-player>
+        </div>
+        <div class="cv-link-container">
+            <a href="https://sites.google.com/a/cihanuniversity.edu.iq/ghassan-qasmarrogy/" class="cv-link" target="_blank">View CV</a>
+            <dotlottie-player class="cv-icon"
+            src="https://lottie.host/50a82b7d-2b2e-4baa-93a3-f63b92fd335f/DBvDZfNJSr.json"
+            background="transparent"
+            speed="1"
+            loop
+            autoplay>
+        </dotlottie-player>
+        </div>
+
+        <!-- زر العودة -->
+        <a href="index.html" class="btn-back">Return back to the home page</a>
+    </div>
+
+    <script>
+        const matrixContainer = document.getElementById("matrix-background");
+        const matrixChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()";
+        const columns = Math.floor(window.innerWidth / 20);
+
+        function createMatrixColumn() {
+            const column = document.createElement("div");
+            column.classList.add("matrix-column");
+            column.style.left = `${Math.random() * 100}%`;
+            column.style.animationDelay = `${Math.random() * 2}s`;  // Faster start
+
+            for (let i = 0; i < 20; i++) {  // Shorter columns for faster effect
+                const char = document.createElement("span");
+                char.classList.add("matrix-char");
+                char.innerText = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+                char.style.animationDelay = `${i * 0.05}s`;  // Quicker character fading
+                column.appendChild(char);
+            }
+
+            matrixContainer.appendChild(column);
+
+            // Remove the column after animation completes to prevent overflow
+            setTimeout(() => {
+                matrixContainer.removeChild(column);
+            }, 7000);  // Adjusted for new animation duration
+        }
+
+        // Generate columns at a faster interval for a more intense Matrix rain effect
+        setInterval(createMatrixColumn, 100);  // Faster interval
+
+        // Create initial batch of columns for an immediate effect
+        for (let i = 0; i < 10; i++) {
+            createMatrixColumn();
+        }
+    </script>
+     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+
+</body>
+</html>

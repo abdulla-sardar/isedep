@@ -1,0 +1,7 @@
+# Secrets — use the .example templates and fill in your own
+config.php
+mailer.php
+
+# PHP dependencies
+vendor/
+composer.lock

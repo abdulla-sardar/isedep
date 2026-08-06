@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معلومات الأستاذ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f3f4f6, #dfe7fd);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .info-card {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 0 0 15px 5px #0077b6;
+        }
+
+        /* خلفية داكنة 
+        .neural-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 220px;
+            background-color: rgba(60, 60, 60, 0.85);
+            z-index: 0;
+        }*/
+
+        /* النودات 
+        .network-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            z-index: 1;
+        }
+
+        .node {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #00b4d8;
+            border-radius: 50%;
+            animation: pulse 2s infinite alternate;
+        }*/
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.5); }
+        }
+
+        .professor-img {
+            top: 1%;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin-bottom: 30px;
+            border: 3px solid #0077b6;
+            object-fit: cover;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* الروبوت المتحرك على اليسار */
+        .robot-animation-left {
+            position: absolute;
+            top: 50px;
+            left: 30px;
+            width: 170px;
+            height: 170px;
+            z-index: 2;
+        }
+
+        /* الروبوت المتحرك على اليمين */
+        .robot-animation-right {
+            position: absolute;
+            top: 50px;
+            right: 30px;
+            width: 170px;
+            height: 170px;
+            z-index: 2;
+        }
+
+        h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    z-index: 1;
+    background: linear-gradient(270deg, #003f88, #0077b6, #48cae4, #90e0ef, #d4af37);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradientShift 5s linear infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+        p {
+            color: #000000;
+            z-index: 2;
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p.specialization {
+            color: #000000;
+            z-index: 2;
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info-section {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+            z-index: 2;
+        }
+
+        .info-section h3 {
+            font-size: 1.2rem;
+            color: #0077b6;
+            margin-bottom: 10px;
+        }
+
+        .info-section p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0077b6;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 2;
+        }
+
+        .btn-back:hover {
+            background-color: #005f99;
+        }
+
+        /* استعلامات الوسائط للأجهزة المحمولة */
+        @media (max-width: 650px) {
+            .robot-animation-right {
+                right: 20px;
+                top: 30px;
+                width: 150px;
+                height: 150px;
+            }
+            .robot-animation-left {
+                top: 30px;
+                width: 150px;
+                height: 150px;
+            }
+            .professor-img {
+                width: 155px;
+                height: 155px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .info-section h3 {
+                font-size: 1rem;
+            }
+            .info-section p {
+                font-size: 0.9rem;
+            }
+        }
+        @media (max-width: 450px) {
+            .robot-animation-right {
+                right: 2px;
+                top: 95px;
+                width: 110px;
+                height: 110px;
+            }
+            .robot-animation-left {
+                left: 2px;
+                top: 100px;
+                width: 100px;
+                height: 100px;
+            }
+            .professor-img {
+                width: 155px;
+                height: 155px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .info-section h3 {
+                font-size: 1rem;
+            }
+            .info-section p {
+                font-size: 0.9rem;
+            }
+        }
+        /* تنسيق الرابط النصي */
+        .research-link-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        .research-link {
+            color: #0077b6;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .research-link:hover {
+            color: #005f99;
+        }
+
+        /* تأثير الخط المتحرك أسفل النص */
+        .research-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: #005f99;
+            transition: width 0.3s ease;
+        }
+
+        .research-link:hover::after {
+            width: 100%;
+        }
+
+        /* تخصيص حجم النموذج المتحرك */
+        dotlottie-player.research-icon {
+            width: 80px;
+            height: 80px;
+        }
+        /* تنسيقات الحاوية للرابط والنموذج */
+        .cv-link-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* تصميم الزر */
+        .cv-link {
+            color: #0077b6;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: #e0f7ff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cv-link:hover {
+            background-color: #cceeff;
+        }
+
+        /* تخصيص حجم النموذج المتحرك */
+        dotlottie-player.cv-icon {
+            width: 80px;
+            height: 80px;
+        }
+/* الخلفية الزرقاء الثابتة */
+.neural-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, rgba(0, 10, 30, 0.9), rgba(0, 20, 60, 0.85));
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* إعداد حاوية الأكواد المتحركة */
+.codes-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 220px;
+    z-index: 1;
+    overflow: hidden;
+    animation: scroll-up 20s linear infinite;
+}
+
+/* إعداد الأكواد البرمجية بلون أزرق وتأثير الهكرز */
+.code {
+    font-size: 0.8rem;
+    color: rgba(0, 150, 255, 0.8); /* لون أزرق ساطع */
+    white-space: nowrap;
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace; /* خط طرفي */
+}
+
+/* حركة الأكواد للأعلى */
+@keyframes scroll-up {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(-100%); }
+}
+
+
+        
+    </style>
+</head>
+<body>
+
+    <div class="info-card">
+        <div class="neural-background">
+            <!-- طبقة الأكواد المتحركة -->
+            <div class="codes-container">
+                <div class="code" style="top: 0%; left: 5%;">print("Hello, World!") # Python</div>
+                <div class="code" style="top: 8%; left: 20%;">console.log('Hello, World!'); // JavaScript</div>
+                <div class="code" style="top: 15%; left: 30%;">System.out.println("Hello, World!"); // Java</div>
+                <div class="code" style="top: 22%; left: 55%;">cout &lt;&lt; "Hello, World!"; // C++</div>
+                <div class="code" style="top: 30%; left: 10%;">Console.WriteLine("Hello, World!"); // C#</div>
+                <div class="code" style="top: 38%; left: 40%;">echo "Hello, World!"; // PHP</div>
+                <div class="code" style="top: 45%; left: 15%;">fmt.Println("Hello, World!") // Go</div>
+                <div class="code" style="top: 52%; left: 5%;">puts 'Hello, World!' # Ruby</div>
+                <div class="code" style="top: 60%; left: 70%;">println!("Hello, World!"); // Rust</div>
+                <div class="code" style="top: 65%; left: 35%;">print("Hello, World!") // Swift</div>
+                <div class="code" style="top: 72%; left: 20%;">SELECT * FROM users; // SQL</div>
+                <div class="code" style="top: 78%; left: 50%;">fprintf(stdout, "Hello, World!\n"); // C</div>
+                <div class="code" style="top: 85%; left: 25%;">Write-Host "Hello, World!" // PowerShell</div>
+                <div class="code" style="top: 92%; left: 15%;">DISPLAY "Hello, World!" // COBOL</div>
+                <div class="code" style="top: 99%; left: 60%;">echo Hello, World! // Shell</div>
+                <div class="code" style="top: 105%; left: 10%;">print("Hello, World!") # R</div>
+                <div class="code" style="top: 115%; left: 40%;">alert('Hello, World!'); // JavaScript</div>
+                <div class="code" style="top: 120%; left: 30%;">System.Console.WriteLine("Hello, World!"); // F#</div>
+                <div class="code" style="top: 128%; left: 45%;">data HelloWorld = "Hello, World!" -- Haskell</div>
+                <div class="code" style="top: 135%; left: 65%;">disp('Hello, World!') % MATLAB</div>
+                <div class="code" style="top: 140%; left: 10%;">printf("Hello, World!\n"); // C</div>
+                <div class="code" style="top: 148%; left: 30%;">print *, "Hello, World!" ! Fortran</div>
+                <div class="code" style="top: 155%; left: 55%;">IO.puts("Hello, World!") # Elixir</div>
+                <div class="code" style="top: 160%; left: 5%;">main = putStrLn "Hello, World!" -- Haskell</div>
+                <div class="code" style="top: 168%; left: 25%;">println("Hello, World!") // Julia</div>
+                <div class="code" style="top: 175%; left: 40%;">print("Hello, World!") // Dart</div>
+                <div class="code" style="top: 182%; left: 15%;">echo 'Hello, World!' // Perl</div>
+                <div class="code" style="top: 190%; left: 35%;">console.log('Hello, World!'); // TypeScript</div>
+                <div class="code" style="top: 198%; left: 50%;">document.write("Hello, World!"); // HTML</div>
+                <div class="code" style="top: 205%; left: 65%;">(display "Hello, World!") ; Scheme</div>
+                <div class="code" style="top: 212%; left: 5%;">puts "Hello, World!" // Tcl</div>
+                <div class="code" style="top: 220%; left: 20%;">System.out.print("Hello, World!"); // Kotlin</div>
+                <div class="code" style="top: 228%; left: 45%;">echo -e "Hello, World!" // Bash</div>
+                <div class="code" style="top: 235%; left: 55%;">System.print("Hello, World!") // Smalltalk</div>
+                <div class="code" style="top: 242%; left: 15%;">writeln("Hello, World!") // Pascal</div>
+                <div class="code" style="top: 250%; left: 30%;">PRINT "Hello, World!" // BASIC</div>
+                <div class="code" style="top: 258%; left: 40%;">MsgBox "Hello, World!" // VBA</div>
+                <div class="code" style="top: 265%; left: 5%;">NSLog(@"Hello, World!"); // Objective-C</div>
+                <div class="code" style="top: 272%; left: 55%;">say "Hello, World!" // Perl 6</div>
+                <div class="code" style="top: 280%; left: 25%;">trace("Hello, World!") // ActionScript</div>
+                <div class="code" style="top: 288%; left: 45%;">Debug.Print "Hello, World!" // VB.NET</div>
+                <div class="code" style="top: 295%; left: 60%;">$write("Hello, World!"); // Verilog</div>
+                <div class="code" style="top: 300%; left: 20%;">System.debug("Hello, World!") // Crystal</div>
+                <div class="code" style="top: 308%; left: 15%;">console("Hello, World!") // Pharo</div>
+                <div class="code" style="top: 315%; left: 50%;">write-host "Hello, World!" // PowerShell</div>
+                <div class="code" style="top: 322%; left: 40%;">trace("Hello, World!") // OpenEdge ABL</div>
+            </div>
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+
+        <!-- الروبوت المتحرك على اليسار -->
+        <div class="robot-animation-left">
+            <dotlottie-player src="https://lottie.host/c8b2e1fd-f9c6-479c-a974-e13c6036ba23/e5MVs8sVeZ.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></dotlottie-player>   
+        </div>
+
+        <!-- الروبوت المتحرك على اليمين -->
+        <div class="robot-animation-right">
+            <dotlottie-player src="https://lottie.host/f06d2843-9735-4eb0-8a1e-30fdb1526985/4YpYjEsQLX.json" background="transparent" speed="0.4" style="width: 100%; height: 100%;" loop autoplay></dotlottie-player>
+        </div>
+
+        <!-- صورة الأستاذ -->
+        <img src="IMG_4181.JPG" alt="صورة الأستاذ" class="professor-img">
+
+        <!-- الاسم والتخصص -->
+        <br><h2><b>Mohammad Anwar Assaad</b></h2>
+        <p class="specialization">Specialization: Computer Sciences/Artificial Intelligence</p>
+
+        <!-- قسم المعلومات الأساسية -->
+        <div class="info-section">
+            <h3>Academic qualifications</h3>
+            <p>Professor in Computer Sciences & Artificial Intelligence from France</p>
+        </div>
+
+        <!-- قسم سنوات الخبرة -->
+        <div class="info-section">
+            <h3>Years of experience</h3>
+            <p><b>18 Years</b> of teaching and research in the field of <b>Artificial Intelligence & Programming & Database Engineering</b></p>
+        </div>
+
+        <!-- قسم الأبحاث والمنشورات -->
+        <div class="info-section">
+            <h3>Research and publications</h3>
+            <p>Published several research papers in the field of Artificial Neural Networks, Fuzzy Logic, Artificial Intelligence, Machine Learning, Deep Learning, Expert Systems, Image Processing and Pattern Recognition, Internet Technologies and Web Programming, Data Mining, Data Science, Big Data
+                and it's about 120 researches. He participated in international conferences and has research papers published in scientific journals.</p>
+        </div>
+
+        <!-- قسم المقررات التي يقوم بتدريسها -->
+        <div class="info-section">
+            <h3>Courses taught</h3>
+            <p>Machine Learning, Database systems, Distributed Database systems, Web Design, Web Development, Software Engineering, Software Testing, Application Development, Object Oriented Programming</p>
+        </div>
+        <div class="research-link-container">
+            <a href="https://www.linkedin.com/in/mohammad-assaad-721a09265/" class="research-link">See the professor's research</a>
+            <dotlottie-player class="research-icon"
+                src="https://lottie.host/2506c4c0-7c7e-4016-ad94-dd009b0595b0/A706HNN9p3.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay>
+            </dotlottie-player>
+        </div>
+        <div class="cv-link-container">
+            <a href="CV-Mohammad ASSAAD-11-11-2024.pdf" class="cv-link" target="_blank">View CV</a>
+            <dotlottie-player class="cv-icon"
+            src="https://lottie.host/50a82b7d-2b2e-4baa-93a3-f63b92fd335f/DBvDZfNJSr.json"
+            background="transparent"
+            speed="1"
+            loop
+            autoplay>
+        </dotlottie-player>
+        </div>
+
+        <!-- زر العودة -->
+        <a href="index.html" class="btn-back">Return back to the home page</a>
+    </div>
+
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+</body>
+</html>
+
+
