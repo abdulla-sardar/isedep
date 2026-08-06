@@ -2,6 +2,12 @@
 
 A full website for the **Informatics & Software Engineering Department (ISE)** at Cihan University-Erbil — [isedep.com](https://isedep.com) — with staff profile pages, an authentication system, and an animated digital ID card experience.
 
+## 📱 Screenshots
+
+| Homepage | Staff Profile | Digital ID Login |
+|:---:|:---:|:---:|
+| ![Homepage](screenshots/homepage.png) | ![Staff Profile](screenshots/staff-profile.png) | ![Login](screenshots/login.png) |
+
 ## ✨ Features
 
 - 🪪 **Animated digital ID login** — a stylized, robot-themed login/sign-in experience
