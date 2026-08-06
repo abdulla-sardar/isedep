@@ -4,16 +4,15 @@ require 'config.php';
 $token = $_GET['token'] ?? '';
 
 if (!$token) {
-    die("❌ Invalid reset link.");
+    die("Invalid reset link.");
 }
 
-// التحقق من التوكن وصلاحيته
 $stmt = $conn->prepare("SELECT * FROM users WHERE reset_token = ? AND token_expires >= NOW()");
 $stmt->execute([$token]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$user) {
-    die("❌ Link expired or invalid.");
+    die("Link expired or invalid.");
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -21,17 +20,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirm = $_POST['confirm'] ?? '';
 
     if (strlen($newPassword) < 8 || !preg_match('/[0-9]/', $newPassword)) {
-        echo "<p style='color:red'>❌ Password must be at least 8 characters and contain a number.</p>";
+        echo "<p style='color:red'>Password must be at least 8 characters and contain a number.</p>";
     } elseif ($newPassword !== $confirm) {
-        echo "<p style='color:red'>❌ Passwords do not match.</p>";
+        echo "<p style='color:red'>Passwords do not match.</p>";
     } else {
         $hashed = password_hash($newPassword, PASSWORD_BCRYPT);
 
-        // تحديث الباسورد وحذف التوكن
         $stmt = $conn->prepare("UPDATE users SET password = ?, reset_token = NULL, token_expires = NULL WHERE id = ?");
         $stmt->execute([$hashed, $user['id']]);
 
-        echo "<p style='color:lime'>✅ Password has been reset successfully.</p>";
+        echo "<p style='color:lime'>Password has been reset successfully.</p>";
         echo "<script>setTimeout(() => window.location.href='login.html', 3000);</script>";
         exit;
     }
@@ -89,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
   <div class="card">
-    <h2>🔐 Reset Your Password</h2>
+    <h2>Reset Your Password</h2>
     <form method="POST">
       <input type="password" name="password" placeholder="New Password" required />
       <input type="password" name="confirm" placeholder="Confirm Password" required />

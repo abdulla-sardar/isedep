@@ -78,7 +78,6 @@
     animation: gradientShift 7s linear infinite;
 }
 
-/* حركة التدرج */
 @keyframes gradientShift {
     0% {
         background-position: 0% 50%;
@@ -90,9 +89,6 @@
         background-position: 0% 50%;
     }
 }
-
-
-
 
         .info-section {
             width: 100%;
@@ -132,7 +128,6 @@
             background-color: #005f99;
         }
 
-        /* تخصيص للنماذج */
         dotlottie-player.left {
             width: 190px;
             height: 190px;
@@ -210,7 +205,7 @@
             height: 30%;
         }
         }
-        /* تنسيق الرابط النصي */
+
         .research-link-container {
             display: flex;
             align-items: center;
@@ -232,7 +227,6 @@
             color: #005f99;
         }
 
-        /* تأثير الخط المتحرك أسفل النص */
         .research-link::after {
             content: "";
             position: absolute;
@@ -248,12 +242,11 @@
             width: 100%;
         }
 
-        /* تخصيص حجم النموذج المتحرك */
         dotlottie-player.research-icon {
             width: 80px;
             height: 80px;
         }
-        
+
     </style>
 </head>
 <body>
@@ -265,22 +258,22 @@
 
         <div class="centered-content">
             <!-- نموذج يسار الصورة -->
-            <dotlottie-player class="left" 
-                src="https://lottie.host/8d35b2e5-0326-4286-bba2-0d71d2cb54bd/mGIznwkTpt.json" 
-                background="transparent" 
-                speed="0.6" 
-                loop 
+            <dotlottie-player class="left"
+                src="https://lottie.host/8d35b2e5-0326-4286-bba2-0d71d2cb54bd/mGIznwkTpt.json"
+                background="transparent"
+                speed="0.6"
+                loop
                 autoplay></dotlottie-player>
 
             <!-- صورة الأستاذ -->
             <img src="images/adil-hussain-mohammed.jpg" alt="صورة الأستاذ" class="professor-img">
 
             <!-- نموذج يمين الصورة -->
-            <dotlottie-player class="right" 
-                src="https://lottie.host/ced7e25d-ae41-4b73-813f-26f30fe726b9/muHR17Zscd.json" 
-                background="transparent" 
-                speed="1" 
-                loop 
+            <dotlottie-player class="right"
+                src="https://lottie.host/ced7e25d-ae41-4b73-813f-26f30fe726b9/muHR17Zscd.json"
+                background="transparent"
+                speed="1"
+                loop
                 autoplay></dotlottie-player>
         </div>
 
@@ -319,12 +312,11 @@
     </div>
 
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-    
+
     <script>
         const canvas = document.getElementById("networkCanvas");
         const ctx = canvas.getContext("2d");
-    
-        // ضبط حجم الكانفس ليتماشى مع حجم العنصر الأب
+
         function resizeCanvas() {
             const parent = document.querySelector('.map-background');
             canvas.width = parent.offsetWidth;
@@ -332,11 +324,11 @@
         }
         resizeCanvas();
         window.addEventListener("resize", resizeCanvas);
-    
+
         const particles = [];
         const particleCount = 50;
         const maxDistance = 150;
-    
+
         class Particle {
             constructor(x, y, vx, vy) {
                 this.x = x;
@@ -345,23 +337,23 @@
                 this.vy = vy;
                 this.radius = 3;
             }
-    
+
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = "#48cae4"; // لون النقاط
+                ctx.fillStyle = "#48cae4";
                 ctx.fill();
             }
-    
+
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
-    
+
                 if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
                 if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
             }
         }
-    
+
         for (let i = 0; i < particleCount; i++) {
             const x = Math.random() * canvas.width;
             const y = Math.random() * canvas.height;
@@ -369,14 +361,14 @@
             const vy = (Math.random() - 0.5) * 2;
             particles.push(new Particle(x, y, vx, vy));
         }
-    
+
         function drawConnections() {
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
-    
+
                     if (distance < maxDistance) {
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
@@ -388,7 +380,7 @@
                 }
             }
         }
-    
+
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach((particle) => {
@@ -398,9 +390,9 @@
             drawConnections();
             requestAnimationFrame(animate);
         }
-    
+
         animate();
     </script>
-    
+
 </body>
 </html>

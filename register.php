@@ -9,35 +9,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $department = trim($_POST['department'] ?? '');
     $gender = $_POST['gender'] ?? '';
 
-    // حماية: تحقق من القيم الأساسية
     if (empty($name) || empty($email) || empty($password) || empty($role) || empty($department) || empty($gender)) {
-        die("❌ Please fill in all required fields.");
+        die("Please fill in all required fields.");
     }
 
-    // حماية: التحقق من الإيميل
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        die("❌ Invalid email format.");
+        die("Invalid email format.");
     }
 
-    // حماية: التحقق من قوة الباسورد
     if (strlen($password) < 8 || !preg_match('/[0-9]/', $password)) {
-        die("❌ Password too weak. Must be at least 8 characters and include a number.");
+        die("Password too weak. Must be at least 8 characters and include a number.");
     }
 
-    // حماية: السماح فقط بالقيم المعروفة
     if (!in_array($role, ['student', 'teacher', 'guest'])) {
-        die("❌ Invalid role selected.");
+        die("Invalid role selected.");
     }
 
     if (!in_array($gender, ['male', 'female'])) {
-        die("❌ Invalid gender selected.");
+        die("Invalid gender selected.");
     }
 
-    // حماية: تشفير الباسورد
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
     try {
-        $stmt = $conn->prepare("INSERT INTO users (full_name, email, password, role, department, gender) 
+        $stmt = $conn->prepare("INSERT INTO users (full_name, email, password, role, department, gender)
                                 VALUES (:name, :email, :password, :role, :department, :gender)");
         $stmt->execute([
             ':name' => htmlspecialchars($name),
@@ -48,13 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':gender' => $gender
         ]);
 
-        echo "✅ Registered successfully!";
+        echo "Registered successfully!";
 
     } catch (PDOException $e) {
         if ($e->getCode() == 23000) {
-            echo "⚠️ Email already exists.";
+            echo "Email already exists.";
         } else {
-            echo "❌ Error: " . $e->getMessage();
+            echo "Error: " . $e->getMessage();
         }
     }
 }

@@ -317,7 +317,6 @@
     }
 
     setInterval(createFloatingCode, 500);
-    // إرسال بيانات تسجيل الدخول إلى login.php
 document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -325,7 +324,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
   const password = passwordInput.value;
 
   if (!email || !password) {
-    alert("❌ Please fill in both fields.");
+    alert("Please fill in both fields.");
     return;
   }
 
@@ -344,20 +343,20 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     if (result.success) {
       document.querySelector(".glass-card").innerHTML = `
         <h2 style="color:#00ffff;text-align:center;font-family:'Fira Code';font-size:18px;">
-          ✅ Welcome back, <span style="color:lime">${result.name}</span><br>
+          Welcome back, <span style="color:lime">${result.name}</span><br>
           <small style="color:#ccc">Role: ${result.role} | Dept: ${result.department}</small>
         </h2>
       `;
       setTimeout(() => {
-        window.location.href = "dashboard.html"; // عدل المسار حسب مكان تحويلك
+        window.location.href = "dashboard.html";
       }, 3000);
     } else {
-      alert(result.message || "❌ Incorrect email or password.");
+      alert(result.message || "Incorrect email or password.");
     }
 
   } catch (error) {
     console.error("Login error:", error);
-    alert("❌ Server error. Please try again.");
+    alert("Server error. Please try again.");
   }
 });
 

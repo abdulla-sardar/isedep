@@ -41,19 +41,17 @@
             box-shadow: 0 0 15px 5px #0077b6;
         }
 
-        /* خلفية الفضاء مع النجوم المتناثرة */
         .space-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 220px; /* المساحة المحددة */
-            background-color: #000; /* خلفية فضائية سوداء */
+            height: 220px;
+            background-color: #000;
             overflow: hidden;
             z-index: 0;
         }
 
-        /* النجوم المتناثرة */
         .star {
             position: absolute;
             background-color: rgba(255, 255, 255, 0.8);
@@ -66,11 +64,10 @@
             100% { opacity: 1; }
         }
 
-        /* تحريك القمر الصناعي */
         .satellite {
             position: absolute;
-            width: 25px; /* تقليص حجم القمر الصناعي */
-            height: 25px; /* تقليص حجم القمر الصناعي */
+            width: 25px;
+            height: 25px;
             background-color: white;
             border-radius: 50%;
             animation: moveSatellite 10s infinite linear;
@@ -85,14 +82,13 @@
             }
         }
 
-        /* تأثير الموجات حول الأقمار الصناعية */
         @keyframes waveAnimation {
             0% {
                 transform: scale(0);
                 opacity: 1;
             }
             100% {
-                transform: scale(3); /* تصغير الموجة */
+                transform: scale(3);
                 opacity: 0;
             }
         }
@@ -101,8 +97,8 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 80px; /* تقليص حجم الموجة */
-            height: 80px; /* تقليص حجم الموجة */
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             border: 2px solid rgba(255, 255, 255, 0.5);
             animation: waveAnimation 5s infinite;
@@ -144,7 +140,6 @@
     }
 }
 
-
         .info-section {
             width: 100%;
             text-align: center;
@@ -170,8 +165,7 @@
         .btn-back:hover {
             background-color: #005f99;
         }
-                /* استعلامات الوسائط للأجهزة المحمولة */
-              /* استعلامات الوسائط للأجهزة المحمولة */
+
         @media (max-width: 650px) {
             .robot-animation-right {
                 right: 20px;
@@ -235,7 +229,7 @@
             animation: fall 7s linear infinite;
         }
         }
-        /* تنسيق الرابط النصي */
+
         .research-link-container {
             display: flex;
             align-items: center;
@@ -257,7 +251,6 @@
             color: #005f99;
         }
 
-        /* تأثير الخط المتحرك أسفل النص */
         .research-link::after {
             content: "";
             position: absolute;
@@ -273,12 +266,11 @@
             width: 100%;
         }
 
-        /* تخصيص حجم النموذج المتحرك */
         dotlottie-player.research-icon {
             width: 80px;
             height: 80px;
         }
-        /* تنسيقات الحاوية للرابط والنموذج */
+
         .cv-link-container {
             display: flex;
             align-items: center;
@@ -288,7 +280,6 @@
             font-size: 1.2rem;
         }
 
-        /* تصميم الزر */
         .cv-link {
             color: #0077b6;
             text-decoration: none;
@@ -306,12 +297,11 @@
             background-color: #cceeff;
         }
 
-        /* تخصيص حجم النموذج المتحرك */
         dotlottie-player.cv-icon {
             width: 80px;
             height: 80px;
         }
-        /* الروبوت المتحرك على اليسار */
+
         .robot-animation-left {
             position: absolute;
             top: 50px;
@@ -321,7 +311,6 @@
             z-index: 2;
         }
 
-        /* الروبوت المتحرك على اليمين */
         .robot-animation-right {
             position: absolute;
             top: 50px;
@@ -348,21 +337,21 @@
                     <div class="star" style="top: 60%; left: 30%; width: 3px; height: 3px;"></div>
                     <div class="star" style="top: 80%; left: 90%; width: 2px; height: 2px;"></div>
                 </div>
-        
+
                 <!-- إضافة قمرين صناعيين -->
                 <div class="satellite" style="top: 10%; left: 30%;"></div> <!-- قمر صناعي 1 -->
                 <div class="satellite" style="top: 15%; left: 70%;"></div> <!-- قمر صناعي 2 -->
-        
+
                 <!-- إضافة تأثير الموجات -->
                 <div class="wave" style="top: 5%; left: 25%;"></div>
                 <div class="wave" style="top: 10%; left: 65%;"></div>
         <div class="robot-animation-left">
-            <dotlottie-player src="https://lottie.host/4394ef85-d741-42d0-a4e9-f2eb7b287d9a/cKS2yeFje6.json" background="transparent" speed="1" loop autoplay></dotlottie-player> 
+            <dotlottie-player src="https://lottie.host/4394ef85-d741-42d0-a4e9-f2eb7b287d9a/cKS2yeFje6.json" background="transparent" speed="1" loop autoplay></dotlottie-player>
         </div>
 
         <!-- الروبوت المتحرك على اليمين -->
         <div class="robot-animation-right">
-            <dotlottie-player src="https://lottie.host/227902b8-0598-4ffa-9848-69da4a4991fd/y8eVgwfxKU.json" background="transparent" speed="0.5"  loop autoplay></dotlottie-player>        
+            <dotlottie-player src="https://lottie.host/227902b8-0598-4ffa-9848-69da4a4991fd/y8eVgwfxKU.json" background="transparent" speed="0.5"  loop autoplay></dotlottie-player>
         </div>
 
         <!-- صورة الأستاذ -->
@@ -399,7 +388,6 @@
             <a href="https://scholar.google.com/citations?user=sReos08AAAAJ&hl=ar&oi=ao" class="research-link">See the professor's research</a>
             <dotlottie-player src="https://lottie.host/6ecc2e65-89fb-42a1-97b2-18b20c41fab9/Q2mOLc3TwP.json" background="transparent" speed="1" style="width: 80px; height: 80px;" loop autoplay></dotlottie-player>
         </div>
-        
 
         <!-- زر العودة -->
         <a href="index.html" class="btn-back">Return back to the home page</a>

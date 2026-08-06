@@ -46,13 +46,12 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 220px; /* Matrix effect limited to this height */
+            height: 220px;
             background: #0f0f0f;
             overflow: hidden;
             z-index: 0;
         }
 
-        /* Matrix rain animation styles */
         .matrix-column {
             position: absolute;
             top: 0;
@@ -117,7 +116,6 @@
     }
 }
 
-
         .info-section {
             width: 100%;
             text-align: center;
@@ -143,8 +141,7 @@
         .btn-back:hover {
             background-color: #005f99;
         }
-                /* استعلامات الوسائط للأجهزة المحمولة */
-              /* استعلامات الوسائط للأجهزة المحمولة */
+
         @media (max-width: 650px) {
             .robot-animation-right {
                 right: 20px;
@@ -208,7 +205,7 @@
             animation: fall 7s linear infinite;
         }
         }
-        /* تنسيق الرابط النصي */
+
         .research-link-container {
             display: flex;
             align-items: center;
@@ -230,7 +227,6 @@
             color: #005f99;
         }
 
-        /* تأثير الخط المتحرك أسفل النص */
         .research-link::after {
             content: "";
             position: absolute;
@@ -246,12 +242,11 @@
             width: 100%;
         }
 
-        /* تخصيص حجم النموذج المتحرك */
         dotlottie-player.research-icon {
             width: 80px;
             height: 80px;
         }
-        /* تنسيقات الحاوية للرابط والنموذج */
+
         .cv-link-container {
             display: flex;
             align-items: center;
@@ -261,7 +256,6 @@
             font-size: 1.2rem;
         }
 
-        /* تصميم الزر */
         .cv-link {
             color: #0077b6;
             text-decoration: none;
@@ -279,12 +273,11 @@
             background-color: #cceeff;
         }
 
-        /* تخصيص حجم النموذج المتحرك */
         dotlottie-player.cv-icon {
             width: 80px;
             height: 80px;
         }
-        /* الروبوت المتحرك على اليسار */
+
         .robot-animation-left {
             position: absolute;
             top: 50px;
@@ -294,7 +287,6 @@
             z-index: 2;
         }
 
-        /* الروبوت المتحرك على اليمين */
         .robot-animation-right {
             position: absolute;
             top: 50px;
@@ -381,28 +373,25 @@
             const column = document.createElement("div");
             column.classList.add("matrix-column");
             column.style.left = `${Math.random() * 100}%`;
-            column.style.animationDelay = `${Math.random() * 2}s`;  // Faster start
+            column.style.animationDelay = `${Math.random() * 2}s`;
 
-            for (let i = 0; i < 20; i++) {  // Shorter columns for faster effect
+            for (let i = 0; i < 20; i++) {
                 const char = document.createElement("span");
                 char.classList.add("matrix-char");
                 char.innerText = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
-                char.style.animationDelay = `${i * 0.05}s`;  // Quicker character fading
+                char.style.animationDelay = `${i * 0.05}s`;
                 column.appendChild(char);
             }
 
             matrixContainer.appendChild(column);
 
-            // Remove the column after animation completes to prevent overflow
             setTimeout(() => {
                 matrixContainer.removeChild(column);
-            }, 7000);  // Adjusted for new animation duration
+            }, 7000);
         }
 
-        // Generate columns at a faster interval for a more intense Matrix rain effect
-        setInterval(createMatrixColumn, 100);  // Faster interval
+        setInterval(createMatrixColumn, 100);
 
-        // Create initial batch of columns for an immediate effect
         for (let i = 0; i < 10; i++) {
             createMatrixColumn();
         }

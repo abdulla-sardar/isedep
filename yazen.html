@@ -36,18 +36,6 @@
             box-shadow: 0 0 15px 5px #0077b6;
         }
 
-        /* خلفية داكنة */
-        /*.neural-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 220px;
-            background-color: rgba(176, 125, 171, 0.85);
-            z-index: 0;
-        }*/
-
-        /* النودات */
         .network-layer {
             position: absolute;
             top: 0;
@@ -83,7 +71,6 @@
             position: relative;
         }
 
-        /* الروبوت المتحرك على اليسار */
         .robot-animation-left {
             position: absolute;
             top: 50px;
@@ -93,7 +80,6 @@
             z-index: 2;
         }
 
-        /* الروبوت المتحرك على اليمين */
         .robot-animation-right {
             position: absolute;
             top: 30px;
@@ -181,7 +167,6 @@
             background-color: #005f99;
         }
 
-        /* استعلامات الوسائط للأجهزة المحمولة */
         @media (max-width: 650px) {
             .robot-animation-right {
                 right: 20px;
@@ -236,7 +221,7 @@
                 font-size: 0.9rem;
             }
         }
-        /* تنسيق الرابط النصي */
+
         .research-link-container {
             display: flex;
             align-items: center;
@@ -258,7 +243,6 @@
             color: #005f99;
         }
 
-        /* تأثير الخط المتحرك أسفل النص */
         .research-link::after {
             content: "";
             position: absolute;
@@ -274,12 +258,11 @@
             width: 100%;
         }
 
-        /* تخصيص حجم النموذج المتحرك */
         dotlottie-player.research-icon {
             width: 80px;
             height: 80px;
         }
-        /* تنسيقات الحاوية للرابط والنموذج */
+
         .cv-link-container {
             display: flex;
             align-items: center;
@@ -289,7 +272,6 @@
             font-size: 1.2rem;
         }
 
-        /* تصميم الزر */
         .cv-link {
             color: #0077b6;
             text-decoration: none;
@@ -307,12 +289,11 @@
             background-color: #cceeff;
         }
 
-        /* تخصيص حجم النموذج المتحرك */
         dotlottie-player.cv-icon {
             width: 80px;
             height: 80px;
         }
-      /* خلفية داكنة */
+
 .neural-background {
     position: absolute;
     top: 0;
@@ -324,23 +305,20 @@
     overflow: hidden;
 }
 
-/* تصميم الموجات اللاسلكية */
 .wave {
     position: absolute;
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: 2px solid rgba(0, 150, 255, 0.4); /* لون أزرق */
+    border: 2px solid rgba(0, 150, 255, 0.4);
     animation: expand 4s infinite ease-in-out;
 }
 
-/* حركة الموجات اللاسلكية */
 @keyframes expand {
     0% { transform: scale(0.5); opacity: 1; }
     100% { transform: scale(2); opacity: 0; }
 }
 
-/* حاوية الأكواد المتحركة */
 .codes-container {
     position: absolute;
     top: 0;
@@ -352,26 +330,23 @@
     animation: scroll-up 20s linear infinite;
 }
 
-/* الأكواد تتحرك لأعلى بشكل مستمر */
 @keyframes scroll-up {
     0% { transform: translateY(100%); }
     100% { transform: translateY(-100%); }
 }
 
-/* الأكواد البرمجية */
 .code {
     font-size: 0.8rem;
-    color: rgba(0, 150, 255, 0.8); /* أزرق ساطع */
+    color: rgba(0, 150, 255, 0.8);
     white-space: nowrap;
     position: absolute;
-    font-family: 'Courier New', Courier, monospace; /* خط طرفي */
+    font-family: 'Courier New', Courier, monospace;
 }
 
-/* ألوان الأكواد */
-.color1 { color: rgba(0, 150, 255, 0.8); } /* أزرق */
-.color2 { color: rgba(255, 200, 0, 0.8); } /* أصفر */
-.color3 { color: rgba(255, 80, 80, 0.8); } /* أحمر */
-.color4 { color: rgba(0, 255, 150, 0.8); } /* أخضر */
+.color1 { color: rgba(0, 150, 255, 0.8); }
+.color2 { color: rgba(255, 200, 0, 0.8); }
+.color3 { color: rgba(255, 80, 80, 0.8); }
+.color4 { color: rgba(0, 255, 150, 0.8); }
 
 </style>
 </head>
@@ -385,7 +360,7 @@
             <div class="wave" style="top: 30%; left: 50%;"></div>
             <div class="wave" style="top: 60%; left: 20%; animation-delay: 1s;"></div>
             <div class="wave" style="top: 80%; left: 70%; animation-delay: 2s;"></div>
-        
+
             <!-- حاوية الأكواد المتحركة -->
             <div class="codes-container">
                 <!-- أكواد برمجية ملونة وموزعة عشوائيًا -->
@@ -404,11 +379,6 @@
                 <div class="code color1" style="top: 125%; left: 30%;">dfs(graph, start);</div>
             </div>
         </div>
-        
-        
-        
-        
-        
 
         <!-- الروبوت المتحرك على اليسار -->
         <div class="robot-animation-left">
@@ -416,7 +386,7 @@
 
         <!-- الروبوت المتحرك على اليمين -->
         <div class="robot-animation-right">
-        <dotlottie-player src="https://lottie.host/9b174581-6322-47c4-8d29-1d6ae0ad9488/6guT5ovtFx.json" background="transparent" speed="1"  loop autoplay></dotlottie-player>       
+        <dotlottie-player src="https://lottie.host/9b174581-6322-47c4-8d29-1d6ae0ad9488/6guT5ovtFx.json" background="transparent" speed="1"  loop autoplay></dotlottie-player>
          </div>
 
         <!-- صورة الأستاذ -->
@@ -453,20 +423,15 @@
             <a href="https://scholar.google.com/citations?user=shoMuIkAAAAJ" class="research-link">See the professor's research</a>
             <dotlottie-player src="https://lottie.host/6ecc2e65-89fb-42a1-97b2-18b20c41fab9/Q2mOLc3TwP.json" background="transparent" speed="1" style="width: 80px; height: 80px;" loop autoplay></dotlottie-player>
         </div>
-      
 
         <!-- زر العودة -->
         <a href="index.html" class="btn-back">Return back to the home page</a>
     </div>
 
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-    
-    
+
 </body>
 </html>
 
-
-
-
-<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script> 
+<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 

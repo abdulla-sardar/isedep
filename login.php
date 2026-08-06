@@ -2,17 +2,14 @@
 require 'config.php';
 header('Content-Type: application/json');
 
-// إذا ما كانت POST نوقف
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(["success" => false, "message" => "Invalid request method."]);
     exit;
 }
 
-// استلام البيانات من FormData
 $email = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
 
-// التحقق من الحقول
 if (empty($email) || empty($password)) {
     echo json_encode(["success" => false, "message" => "Please fill in both fields."]);
     exit;
@@ -24,7 +21,6 @@ try {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['password'])) {
-        // ✅ تم تسجيل الدخول
         echo json_encode([
             "success" => true,
             "message" => "Welcome back, {$user['full_name']}!",
@@ -34,7 +30,6 @@ try {
             "gender" => $user['gender']
         ]);
     } else {
-        // ❌ بيانات خاطئة
         echo json_encode(["success" => false, "message" => "Incorrect email or password."]);
     }
 

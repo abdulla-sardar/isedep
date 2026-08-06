@@ -17,7 +17,6 @@
       transition: background 0.6s ease-in-out;
     }
 
-    /* زر التبديل */
     .container {
       position: fixed;
       top: 20px;
@@ -99,7 +98,6 @@
         0px 36px 0px -4px #e9e2ff;
     }
 
-    /* خلفية النجوم */
     .nightsky {
       position: fixed;
       width: 100%;
@@ -177,7 +175,6 @@
 
   <!-- JavaScript -->
   <script>
-    // الوضع النهاري الناعم
     const bgNight = 'linear-gradient(345deg, rgb(51, 18, 58) -30%, rgb(20, 2, 33) 50%, rgb(13, 1, 22))';
     const bgDay = '#dcefff';
 
@@ -186,7 +183,6 @@
       document.documentElement.style.setProperty('--c-bg', e.target.checked ? bgDay : bgNight);
     });
 
-    // توليد النجوم
     const numStars = 250;
     function randomSelect(limit) {
       return Math.floor(Math.random() * limit);

@@ -2,18 +2,17 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php'; // load PHPMailer via Composer
+require 'vendor/autoload.php';
 
 function sendMail($data) {
     $mail = new PHPMailer(true);
 
     try {
-        // Gmail SMTP settings
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'your_email@gmail.com';
-        $mail->Password = 'your_gmail_app_password';   // Gmail App Password, not your login password
+        $mail->Password = 'your_gmail_app_password';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
